@@ -1,0 +1,12 @@
+To ensure that each class has it's own static variable, you should use the "Curiously recurring template pattern" (CRTP).
+
+template <typename T>
+class Base
+{
+    static int staticVar;
+};
+
+template <typename T> int Base<T>::staticVar(0);
+
+class DerivedA : public Base<DerivedA> {};
+class DerivedB : public Base<DerivedB> {};
