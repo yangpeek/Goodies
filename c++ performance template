@@ -1,0 +1,104 @@
+//Microsoft (R) C/C++ Optimizing Compiler Version 19.00.23506 for x86
+// My colleage and I was discussing for vector and set for performance in a specific case
+// and it ended till we found out this test: 
+// http://rextester.com/MNQZS47293
+// I don't know who put there, but I do love this template. We'll use this for a lot of thing.
+// btw: the conclusion we got is: when data is super small even sort is not nessessary, still vector win. 
+// when that data set is really really small for small reason.
+
+#include <iostream>
+#include <ctime>
+#include <random>
+#include <set>
+#include <vector>
+#include <algorithm>
+
+std::vector<std::size_t> make_test_data( std::size_t n )
+{
+    std::mt19937 rng( std::time(nullptr) ) ;
+    std::vector<std::size_t> result(n) ;
+    for( auto& v : result ) v = rng() ;
+    return result ;
+}
+
+void insert( const std::vector<std::size_t>& srce, std::vector<std::size_t>& dest )
+{
+    dest = srce ;
+    std::sort( std::begin(dest), std::end(dest) ) ;
+}
+
+void insert( const std::vector<std::size_t>& srce, std::set<std::size_t>& dest )
+{
+    dest = { std::begin(srce), std::end(srce) } ;
+}
+
+std::size_t find( const std::vector<std::size_t>& what, const std::vector<std::size_t>& vec )
+{
+    std::size_t n = 0 ;
+    for( std::size_t v : what )
+    {
+        const auto iter = std::lower_bound( std::begin(vec), std::end(vec), v ) ;
+        if( iter != std::end(vec) && *iter == v ) ++n ;
+    }
+    return n ;
+}
+
+std::size_t find( const std::vector<std::size_t>& what, const std::set<std::size_t>& set )
+{
+    std::size_t n = 0 ;
+    for( std::size_t v : what ) if( set.find(v) != set.end() ) ++n ;
+    return n ;
+}
+
+struct timer
+{
+    const std::clock_t start = std::clock() ;
+    ~timer()
+    {
+        const auto end = std::clock() ;
+        const auto ms = (end-start) * 1000.0 / CLOCKS_PER_SEC ;
+        std::cout << ms << " msecs.\n" << std::flush ;
+    }
+};
+
+int main()
+{
+    constexpr std::size_t n_values = 100 ;
+    constexpr std::size_t n_searches = 100'000'000 ;
+    
+    std::cout << n_values << " values, " << n_searches << " searches\n\n" ;
+    
+    const auto data_set = make_test_data(n_values) ;
+    const auto searched_values = make_test_data(n_searches) ;
+
+    std::vector<std::size_t> vec ;
+    std::set<std::size_t> set ;
+    
+    volatile std::size_t x = 0 ; 
+
+    {
+        std::cout << "vector: insert & sort -  " ;
+        timer t ;
+        insert( data_set, vec ) ;
+    }
+
+    {
+        std::cout << "         vector: find -   " ;
+        timer t ;
+        x += find( searched_values, vec ) ;
+    }
+
+    {
+        std::cout << "\n          set: insert - " ;
+        timer t ;
+        insert( data_set, set ) ;
+    }
+
+    {
+        std::cout << "            set: find -   " ;
+        timer t ;
+        x += find( searched_values, set ) ;
+    }
+    
+    return x - x ;
+}
