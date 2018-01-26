@@ -1,2 +1,5 @@
 Add comment to jira
 curl -u "admin":"admin" -X POST --data '{"body": "this is a comment."}' -H "Content-type: application/json" "http://issues.mediamath.com/jira/rest/api/2/issue/CORE-12852/comment"
+
+Link issues on Jira
+curl -u user:user -X POST --data '{"inwardIssue": {"key": "TESTING-1"}, "outwardIssue": {"key": "TESTING-2"}}' -H "Accept: application/json" -H "Content-Type: application/json" http://a.b.c.d:8080/jira/rest/api/2/issueLink
