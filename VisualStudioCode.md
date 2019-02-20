@@ -36,4 +36,5 @@
 
 * Docker with VSC:
   * [referer](https://code.visualstudio.com/docs/azure/docker)
+  * attach shell for using docker container
   * run gdb and test through the terminal with vsc
