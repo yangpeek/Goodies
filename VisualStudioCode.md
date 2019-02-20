@@ -5,3 +5,30 @@
   * docker/docker.sh: docker exec -it $(cat .$DEV_CONTAINER_NAME) make -j 4
   * command + shift + b
   
+* Debug inside docker for apps:
+  * install homebrew & gdb: brew install gdb
+  * config launch.json:
+  ```
+      "configurations": [
+        {
+            "name": "docker gdbserver",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/app",
+            "miDebuggerServerAddress": "localhost:5555",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "additionalSOLibSearchPath": "${workspaceFolder}/lib",
+            "sourceFileMap": {
+                "/home/mm/app": "${workspaceFolder}"
+            }
+        }
+    ]
+  ```
+  * run docker gdb server:  ./docker/docker.sh --gdbserver
+  * ./docker/docker.sh: docker exec -it $(cat .$DEV_CONTAINER_NAME) gdbserver :5555 cmd args
+  * start debug with breakpoints. (slow)
