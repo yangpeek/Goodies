@@ -5,7 +5,8 @@
   * docker/docker.sh: docker exec -it $(cat .$DEV_CONTAINER_NAME) make -j 4
   * command + shift + b
   
-* Debug inside docker for apps:
+* Debug inside docker for apps: 
+  * [referer](https://medium.com/@spe_/debugging-c-c-programs-remotely-using-visual-studio-code-and-gdbserver-559d3434fb78)
   * install homebrew & gdb: brew install gdb
   * config launch.json:
   ```
