@@ -33,3 +33,7 @@
   * run docker gdb server:  ./docker/docker.sh --gdbserver
   * ./docker/docker.sh: docker exec -it $(cat .$DEV_CONTAINER_NAME) gdbserver :5555 cmd args
   * start debug with breakpoints. (slow)
+
+* Docker with VSC:
+  * [referer](https://code.visualstudio.com/docs/azure/docker)
+  * run gdb and test through the terminal with vsc
