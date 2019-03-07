@@ -10,3 +10,5 @@ template <typename T> int Base<T>::staticVar(0);
 
 class DerivedA : public Base<DerivedA> {};
 class DerivedB : public Base<DerivedB> {};
+
+std::unordered_map<std::string,float> state_tax = {{"ut", 6.85},{"nv", 8.00}, {"tx", 6.25}, {"al", 4.00}, {"ca", 8.25}};
