@@ -1,6 +1,6 @@
 * [GDB reverse next](https://stackoverflow.com/questions/1206872/how-to-go-to-the-previous-line-in-gdb)
 
-* gdb load bid project failed on debian with 7.7.1
+##### gdb load bid project failed on debian with 7.7.1
   * choose the version from: http://ftp.gnu.org/gnu/gdb/
   * [install gdb 8.2.1](http://www.gdbtutorial.com/tutorial/how-install-gdb)
   * make install failed at some: gdb-8.2.1/missing: makeinfo: not found
