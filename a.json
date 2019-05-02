@@ -1,4 +1,5 @@
 {
   "release": "hello",
-  "name": "yangpeek3"
+  "name": "yangpeek3",
+  "newkey": "$Id: $"
 }
