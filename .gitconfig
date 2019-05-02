@@ -1,2 +1,0 @@
-[filter "release"]
-        smudge = sed "s/VERSION/hello/"
