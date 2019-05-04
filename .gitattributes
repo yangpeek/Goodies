@@ -1,3 +1,2 @@
 *.json ident
-vers export-subst
 vers filter=tag
