@@ -1,0 +1,3 @@
+[filter "tag"]
+	smudge = sed -i.bak "s/\\\$TAG\\\$/\\\$TAG:$(git describe --abbrev=0 --tags)\\\$/" vers
+        clean = sed -i.bak "s/\\\$TAG[^\\\$]*\\\$/\\\$TAG\\\$/" vers
