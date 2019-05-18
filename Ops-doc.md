@@ -23,5 +23,7 @@
   - check reids info:
     - redis-cli -p * -a * info
 
-### Rebbit
-* [rebbitmq common mistakes](https://www.cloudamqp.com/blog/2018-01-19-part4-rabbitmq-13-common-errors.html)
+### Rabbit
+* [rabbitmq common mistakes](https://www.cloudamqp.com/blog/2018-01-19-part4-rabbitmq-13-common-errors.html)
+* [rabbitmq throughput recommendation](https://www.cloudamqp.com/blog/2018-01-08-part2-rabbitmq-best-practice-for-high-performance.html)
+* [rabbitmq sharding plugin](https://github.com/rabbitmq/rabbitmq-sharding)
